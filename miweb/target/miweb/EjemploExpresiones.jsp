@@ -9,7 +9,7 @@
     <h1>
         Ejemplo de Expresiones JSP
     </h1>
-    Convirtiendo a mayúsculas: <%= new String ("hola solchu").toUpperCase() %>  <!--  Expresiones Java  -->
+    Convirtiendo a mayusculas: <%= new String ("hola solchu").toUpperCase() %>  <!--  Expresiones Java  -->
     <br>
     La suma de 5 + 17 es: <%= 5 + 17 %>  <!-- Expresiones matemáticas -->
     <br>
@@ -19,3 +19,17 @@
     
 </body>
 </html>
+
+<!-- EN LA TERMINAL DEL VISUAL TENGO QUE PONER:
+ mvn clean package
+ ls target/
+ sudo cp target/miweb.war /opt/tomcat11/webapps/
+-->
+
+<!-- ABRO LA TERMINAL DE UBUNTU Y REINICIO TOMCAT:
+sudo systemctl restart tomcat
+-->
+
+<!-- DESPUES EN EL NAVEGADOR PONGO:
+http://localhost:8080/miweb/EjemploExpresiones.jsp
+-->
