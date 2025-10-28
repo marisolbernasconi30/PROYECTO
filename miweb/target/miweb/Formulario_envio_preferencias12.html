@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Viajes</title>
+</head>
+<body>
+    <h1>Elige tu destino favorito</h1>
+
+    <form action="Recibe_peticion13.jsp" method="post">
+        <label for="pais">Destino:</label>
+        <select name="pais_destino" id="pais">
+            <option value="ALEMANIA">Alemania</option>
+            <option value="FRANCIA">Francia</option>
+            <option value="ITALIA">Italia</option>
+            <option value="ESPAÑA">España</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Guardar preferencia">
+    </form>
+</body>
+</html>
+
+
+<!-- EN LA TERMINAL DEL VISUAL TENGO QUE PONER:
+mvn clean package
+ls target/
+sudo cp target/miweb.war /opt/tomcat11/webapps/
+-->
+<!-- ABRO LA TERMINAL DE UBUNTU Y REINICIO TOMCAT:
+sudo systemctl restart tomcat
+-->
+<!-- DESPUES EN EL NAVEGADOR PONGO:
+http://localhost:8080/miweb/Formulario_envio_preferencias12.html
+-->

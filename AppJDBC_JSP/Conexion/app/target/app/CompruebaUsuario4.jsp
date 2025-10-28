@@ -15,14 +15,10 @@
 <%@ page import="java.sql.*" %>
 <!-- NOMBRES DE LAS VARIABLES:  -->
     <%
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
+        
         String usuario = request.getParameter("usuario");
         String contra = request.getParameter("contra");
-        String pais = request.getParameter("pais");
-        String tecno = request.getParameter("tecno");
-
-
+    
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -30,16 +26,22 @@
 
         
         Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/usuarios", "jspuser", "1234");
-        Statement sentencia = conexion.createStatement();
-
+        PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM datos WHERE usuario = ? AND contra = ?",
         
-        String instruccionSql = "INSERT INTO datos (nombre, apellido, usuario, contra, pais, tecnologia) VALUES ('" + nombre + "', '" + apellido + "', '" + usuario + "', '" + contra + "', '" + pais + "', '" + tecno + "')";
-        sentencia.executeUpdate(instruccionSql);
-        out.println("Registro exitoso");
-        sentencia.close();
+        ResultSet.TYPE_SCROLL_INSENSITIVE,   
+        ResultSet.CONCUR_READ_ONLY   ); 
         
+        sentencia.setString(1, usuario); 
+        sentencia.setString(2, contra); 
+        ResultSet resultado = sentencia.executeQuery(); 
+        
+        if (resultado.absolute(1)){  
+            out.println("Usuario correcto");
+        } else {
+            out.println("Usuario incorrecto");
+        }
     } catch (Exception e){
-        out.println("Error en el registro" + e.getMessage());
+        out.println("Error en el registro " + e.getMessage());
     }
     %>
 
@@ -72,6 +74,6 @@ sudo cp target/app.war /opt/tomcat11/webapps/
 sudo systemctl restart tomcat
 -->
 <!-- DESPUES EN EL NAVEGADOR PONGO:
-http://localhost:8080/app/CapturaDatos2.jsp
+http://localhost:8080/app/CompruebaUsuario4.jsp
 -->
 <!-- git push origin main -->
